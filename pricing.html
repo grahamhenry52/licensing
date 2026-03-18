@@ -3,55 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing Page</title>
-    <script src="https://js.stripe.com/v3/"></script>
-    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID"></script>
+    <title>Pricing</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Pricing Options</h1>
-    <div id="stripe-payment">
-        <h2>Pay with Stripe</h2>
-        <button id="pay-with-stripe">Pay with Stripe</button>
-    </div>
-    <div id="paypal-payment">
-        <h2>Pay with PayPal</h2>
-        <div id="paypal-button-container"></div>
-    </div>
-
+    <header>
+        <h1>Our Pricing Options</h1>
+    </header>
+    <section id="pricing">
+        <div class="pricing-tier basic">
+            <h2>Basic</h2>
+            <p>Price: $10/month</p>
+            <ul>
+                <li>Feature 1</li>
+                <li>Feature 2</li>
+                <li>Feature 3</li>
+            </ul>
+            <div class="payment-options">
+                <h3>Payment Options</h3>
+                <button onclick="payWithStripe('Basic', 10)">Pay with Stripe</button>
+                <button onclick="payWithPayPal('Basic', 10)">Pay with PayPal</button>
+            </div>
+        </div>
+        <div class="pricing-tier professional">
+            <h2>Professional</h2>
+            <p>Price: $30/month</p>
+            <ul>
+                <li>Feature 1</li>
+                <li>Feature 2</li>
+                <li>Feature 3</li>
+                <li>Feature 4</li>
+            </ul>
+            <div class="payment-options">
+                <h3>Payment Options</h3>
+                <button onclick="payWithStripe('Professional', 30)">Pay with Stripe</button>
+                <button onclick="payWithPayPal('Professional', 30)">Pay with PayPal</button>
+            </div>
+        </div>
+        <div class="pricing-tier enterprise">
+            <h2>Enterprise</h2>
+            <p>Price: $100/month</p>
+            <ul>
+                <li>Feature 1</li>
+                <li>Feature 2</li>
+                <li>Feature 3</li>
+                <li>Feature 4</li>
+                <li>Feature 5</li>
+            </ul>
+            <div class="payment-options">
+                <h3>Payment Options</h3>
+                <button onclick="payWithStripe('Enterprise', 100)">Pay with Stripe</button>
+                <button onclick="payWithPayPal('Enterprise', 100)">Pay with PayPal</button>
+            </div>
+        </div>
+    </section>
     <script>
-        // Stripe payment logic
-        const stripe = Stripe('YOUR_STRIPE_PUBLIC_KEY');
-        document.getElementById('pay-with-stripe').addEventListener('click', () => {
-            // Call your backend to create the Checkout session
-            fetch('/create-checkout-session', { method: 'POST' })
-            .then(response => response.json())
-            .then(sessionId => {
-                return stripe.redirectToCheckout({ sessionId });
-            })
-            .then(result => {
-                if (result.error) {
-                    alert(result.error.message);
-                }
-            });
-        });
+        function payWithStripe(plan, amount) {
+            // Stripe payment integration logic
+        }
 
-        // PayPal payment logic
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: 'YOUR_PRODUCT_PRICE'
-                        }
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    alert('Transaction completed by ' + details.payer.name.given_name);
-                });
-            }
-        }).render('#paypal-button-container');
+        function payWithPayPal(plan, amount) {
+            // PayPal payment integration logic
+        }
     </script>
 </body>
 </html>
