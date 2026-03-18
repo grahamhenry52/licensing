@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Page</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID"></script>
+</head>
+<body>
+    <h1>Pricing Options</h1>
+    <div id="stripe-payment">
+        <h2>Pay with Stripe</h2>
+        <button id="pay-with-stripe">Pay with Stripe</button>
+    </div>
+    <div id="paypal-payment">
+        <h2>Pay with PayPal</h2>
+        <div id="paypal-button-container"></div>
+    </div>
+
+    <script>
+        // Stripe payment logic
+        const stripe = Stripe('YOUR_STRIPE_PUBLIC_KEY');
+        document.getElementById('pay-with-stripe').addEventListener('click', () => {
+            // Call your backend to create the Checkout session
+            fetch('/create-checkout-session', { method: 'POST' })
+            .then(response => response.json())
+            .then(sessionId => {
+                return stripe.redirectToCheckout({ sessionId });
+            })
+            .then(result => {
+                if (result.error) {
+                    alert(result.error.message);
+                }
+            });
+        });
+
+        // PayPal payment logic
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: 'YOUR_PRODUCT_PRICE'
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('Transaction completed by ' + details.payer.name.given_name);
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
+</body>
+</html>
