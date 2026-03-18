@@ -1,70 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing</title>
-    <link rel="stylesheet" href="styles.css">
+<title>Vehicle Licensing Fees</title>
 </head>
 <body>
-    <header>
-        <h1>Our Pricing Options</h1>
-    </header>
-    <section id="pricing">
-        <div class="pricing-tier basic">
-            <h2>Basic</h2>
-            <p>Price: $10/month</p>
-            <ul>
-                <li>Feature 1</li>
-                <li>Feature 2</li>
-                <li>Feature 3</li>
-            </ul>
-            <div class="payment-options">
-                <h3>Payment Options</h3>
-                <button onclick="payWithStripe('Basic', 10)">Pay with Stripe</button>
-                <button onclick="payWithPayPal('Basic', 10)">Pay with PayPal</button>
-            </div>
-        </div>
-        <div class="pricing-tier professional">
-            <h2>Professional</h2>
-            <p>Price: $30/month</p>
-            <ul>
-                <li>Feature 1</li>
-                <li>Feature 2</li>
-                <li>Feature 3</li>
-                <li>Feature 4</li>
-            </ul>
-            <div class="payment-options">
-                <h3>Payment Options</h3>
-                <button onclick="payWithStripe('Professional', 30)">Pay with Stripe</button>
-                <button onclick="payWithPayPal('Professional', 30)">Pay with PayPal</button>
-            </div>
-        </div>
-        <div class="pricing-tier enterprise">
-            <h2>Enterprise</h2>
-            <p>Price: $100/month</p>
-            <ul>
-                <li>Feature 1</li>
-                <li>Feature 2</li>
-                <li>Feature 3</li>
-                <li>Feature 4</li>
-                <li>Feature 5</li>
-            </ul>
-            <div class="payment-options">
-                <h3>Payment Options</h3>
-                <button onclick="payWithStripe('Enterprise', 100)">Pay with Stripe</button>
-                <button onclick="payWithPayPal('Enterprise', 100)">Pay with PayPal</button>
-            </div>
-        </div>
-    </section>
-    <script>
-        function payWithStripe(plan, amount) {
-            // Stripe payment integration logic
-        }
-
-        function payWithPayPal(plan, amount) {
-            // PayPal payment integration logic
-        }
-    </script>
+<h1>New Vehicle Licensing Fee Structure</h1>
+<h2>Pricing Tiers</h2>
+<ul>
+    <li>Admin Fee: R300</li>
+    <li>Passenger Vehicles (ZN): R450</li>
+    <li>Passenger Vehicles (Other): R450</li>
+    <li>Trucks Admin Fee: R600 (All Regions)</li>
+</ul>
+<h2>Payment Options</h2>
+<ul>
+    <li>Stripe</li>
+    <li>PayPal</li>
+</ul>
 </body>
 </html>
